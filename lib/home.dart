@@ -52,30 +52,20 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black12,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        // toolbarHeight: 100,
-        // elevation: 150,
-        // title: Text('Home Page'),
+        backgroundColor: Colors.grey[800],
         flexibleSpace: SafeArea(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  'assets/screenlogo.jpg', // Replace with your image path
-                  // width: 200,
-                  // height: 200,
-                  // color: Colors.red, // Set image color to red
+                padding: const EdgeInsets.all(7),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/screenlogo.jpg', // Replace with your image path
+                  ),
                 ),
               ),
-              // IconButton(
-              //   icon: Icon(Icons.arrow_back),
-              //   onPressed: () {
-              //     Navigator.pushReplacementNamed(context, '/');
-              //   },
-              // ),
-              // Text('Home Page'),
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/search');
@@ -98,6 +88,41 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.grey[600],
+              ),
+              child: Text(
+                'Screentime',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                // Handle the tap
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {
+                // Handle the tap
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
       ),
       body: GridView.builder(
@@ -129,7 +154,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(17),
                     child: Image.network(
                       movie['image'] != null
                           ? movie['image']['medium']
